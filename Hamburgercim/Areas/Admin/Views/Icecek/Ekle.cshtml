@@ -1,0 +1,22 @@
+﻿
+@model Hamburgercim.Models.Data.Classes.Icecek
+
+<div class="card-header; text-center;">
+    <h2 style="color:tomato; text-align:center">ADMİN ICECEK EKLEME SAYFASI</h2>
+</div>
+
+<div class="card-body">
+    <form asp-area="Admin" asp-controller="Icecek" asp-action="Ekle" method="post">
+        <div class="form-group">
+            <label asp-for="IcecekAd">ICECEK ADI:</label>
+            <input asp-for="IcecekAd" type="text" class="form-control" />
+            <span asp-validation-for="IcecekAd" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="IcecekFiyat">ICECEK FİYATI:</label>
+            <input asp-for="IcecekFiyat" type="number" class="form-control" />
+            <span asp-validation-for="IcecekFiyat" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">EKLE</button>
+    </form>
+</div>

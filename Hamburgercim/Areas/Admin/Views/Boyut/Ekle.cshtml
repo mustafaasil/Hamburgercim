@@ -1,0 +1,22 @@
+﻿
+@model Hamburgercim.Models.Data.Classes.Boyut
+
+<div class="card-header; text-center;">
+    <h2 style="color:tomato; text-align:center">ADMİN BOYUT EKLEME SAYFASI</h2>
+</div>
+
+<div class="card-body">
+    <form asp-area="Admin" asp-controller="Boyut" asp-action="Ekle" method="post">
+        <div class="form-group">
+            <label asp-for="BoyutAd">BOYUT ADI:</label>
+            <input asp-for="BoyutAd" type="text" class="form-control" />
+            <span asp-validation-for="BoyutAd" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="BoyutFiyat">BOYUT FİYATI:</label>
+            <input asp-for="BoyutFiyat" type="number" class="form-control" />
+            <span asp-validation-for="BoyutFiyat" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">EKLE</button>
+    </form>
+</div>

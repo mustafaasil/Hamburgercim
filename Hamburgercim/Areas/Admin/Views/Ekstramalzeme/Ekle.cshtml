@@ -1,0 +1,21 @@
+﻿@model Hamburgercim.Models.Data.Classes.EkstraMalzeme
+
+<div class="card-header; text-center;">
+    <h2 style="color:tomato; text-align:center">ADMİN EKSTRA MALZEME EKLEME SAYFASI</h2>
+</div>
+
+<div class="card-body">
+    <form asp-area="Admin" asp-controller="EkstraMalzeme" asp-action="Ekle" method="post">
+        <div class="form-group">
+            <label asp-for="EkstraMalzemeAd">EKSTRA MALZEME ADI:</label>
+            <input asp-for="EkstraMalzemeAd" type="text" class="form-control" />
+            <span asp-validation-for="EkstraMalzemeAd" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="EkstraMalzemeFiyat">EKSTRA MALZEME FİYATI:</label>
+            <input asp-for="EkstraMalzemeFiyat" type="number" class="form-control" />
+            <span asp-validation-for="EkstraMalzemeFiyat" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">EKLE</button>
+    </form>
+</div>

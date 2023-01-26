@@ -1,0 +1,28 @@
+﻿@model List<Hamburgercim.Models.Data.Classes.EkstraMalzeme>
+
+<div class="card-header; text-center">
+    <h2 style="color:tomato">EKSTRA MALZEMELER LİSTESİ SAYFASI</h2>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ADI</th>
+            <th>FİYAT</th>
+        </tr>
+    </thead>
+    <tbody>
+        @*Burada ekstramalzemeler içerisinden foreach ile gezip, yazdıracağız*@
+        @foreach (var icecek in Model)
+        {
+            <tr>
+                <td>@icecek.EkstraMalzemeAd</td>
+                <td>@icecek.EkstraMalzemeFiyat</td>
+                <td class="text-end">
+                    <a class="btn btn-warning" asp-area="Admin" asp-controller="EkstraMalzeme" asp-action="Guncelle" asp-route-id="@icecek.EkstraMalzemeId">Güncelle</a>
+                    <a class="btn btn-danger" asp-area="Admin" asp-controller="EkstraMalzeme" asp-action="Sil" asp-route-id="@icecek.EkstraMalzemeId">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

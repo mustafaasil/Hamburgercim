@@ -1,0 +1,118 @@
+﻿@model Hamburgercim.Models.Data.Classes.Siparis
+
+
+
+<div class="card-header; text-center;">
+    <h2 style="color:tomato; text-align:center">Sipariş Sayfasına Hoşgeldiniz... Lütfen siparişinizi giriniz</h2>
+</div>
+
+<div class="container">
+    <form method="post" asp-action="Index" asp-controller="Siparis">
+        <div class="form-group mb-3">
+            <label asp-for="Hamburger.HamburgerId" style="font-size:24px" class="form-label">Hamburger Adı:</label>
+            <select id="hamburger" onchange="seciliHamburger()" style="font-size:24px; background-color:beige; border:solid" asp-for="Hamburger.HamburgerId" asp-items="ViewBag.Hamburgerler" class="form-control">
+                <option value="">Hamburger Seçiniz</option>
+            </select>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Icecek!.IcecekId" style="font-size:24px" class="form-label">Icecek Adı:</label>
+            <select id="icecek" onchange="seciliIcecek()" style="font-size:24px; background-color:beige; border:solid" asp-for="Icecek!.IcecekId" asp-items="ViewBag.Icecekler" class="form-control">
+                <option value="">Icecek Seçiniz</option>
+            </select>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Boyut.BoyutId" style="font-size:24px" class="form-label">Boyut:</label>
+            <select id="boyut" onchange="seciliBoyut()" ms-3" style="font-size:24px; background-color:beige; border:solid" asp-for="Boyut.BoyutId" asp-items="ViewBag.Boyutlar" class="form-control">
+                <option value="">Boyut Seçiniz</option>
+            </select>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="EkstraMalzeme"  style="font-size:24px" class="form-label">Ekstra Malzeme Adı:</label>
+            <select id="ekstra" multiple onchange="seciliEkstra()" style="font-size:24px; background-color:beige; border:solid" asp-items="ViewBag.EkstraMalzemeler" class="form-control">
+            </select>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="SiparisAdet" style="font-size:24px">Siparis Adeti:</label>
+            <input id="adet" onchange="seciliAdet()" asp-for="SiparisAdet" style="font-size:24px; background-color:beige; border:solid" type="number" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="ToplamTutar" style="font-size:24px">Toplam Tutar:</label>
+            <input asp-for="ToplamTutar" style="font-size:24px; background-color:beige; border:solid" type="number" id="txt" value="" class="form-control" readonly />
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">SİPARİŞ EKLE</button>
+    </form>
+</div>
+
+@section Scripts{
+
+    <script>
+
+        document.getElementById("hamburger").onchange = seciliHamburger = () => {
+
+            let hamburgerSelector = document.querySelector("#hamburger");
+            let hamburger = document.getElementById("hamburger");
+            let hamburgerSecim = hamburger.options[hamburger.selectedIndex].text.split(" ")[1];
+            let total = document.getElementById("txt").value;
+
+            document.getElementById("txt").value = Number(hamburgerSecim) + Number(total);
+
+            hamburgerSelector.addEventListener("click", () => {
+                hamburgerSelector.setAttribute("disabled", true);
+            });
+
+        }
+
+        document.getElementById("icecek").onchange = seciliIcecek = () => {
+            let icecekSelector = document.querySelector("#icecek");
+            let icecek = document.getElementById("icecek");
+            let icecekSecim = icecek.options[icecek.selectedIndex].text.split(" ")[1];
+            let total = document.getElementById("txt").value;
+
+            document.getElementById("txt").value = Number(icecekSecim) + Number(total);
+
+            icecekSelector.addEventListener("click", () => {
+
+                icecekSelector.setAttribute("disabled", true);
+            });
+        }
+
+        document.getElementById("boyut").onchange = seciliBoyut = () => {
+
+            let boyutSelector = document.querySelector("#boyut");
+            let boyut = document.getElementById("boyut");
+            let boyutSecim = boyut.options[boyut.selectedIndex].text.split(" ")[1];
+            let total = document.getElementById("txt").value;
+
+            document.getElementById("txt").value = Number(boyutSecim) + Number(total);
+
+            boyutSelector.addEventListener("click", () => {
+
+                boyutSelector.setAttribute("disabled", true);
+            });
+
+        }
+
+        document.getElementById("ekstra").onchange = seciliEkstra = () => {
+
+            let ekstra = document.getElementById("ekstra");
+            let ekstraSecim = ekstra.options[ekstra.selectedIndex].text.split(" ")[1];
+            let total = document.getElementById("txt").value;
+
+            document.getElementById("txt").value = Number(ekstraSecim) + Number(total);
+        }
+
+        document.getElementById("adet").onchange = seciliAdet = () => {
+
+            document.getElementById("adet").onchange = seciliAdet = () => {
+                let adet = document.getElementById("adet").value;
+                let total = document.getElementById("txt").value;
+                if (adet >= 3) {
+                    document.getElementById("txt").value = (Number(total) / (Number(adet) - 1)) * Number(adet)
+                }
+                else {
+                    document.getElementById("txt").value = Number(total) * Number(adet)
+                }
+            }
+        }
+    </script>
+}

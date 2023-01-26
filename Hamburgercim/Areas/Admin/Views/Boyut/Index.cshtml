@@ -1,0 +1,29 @@
+﻿@model List<Hamburgercim.Models.Data.Classes.Boyut>
+
+<div class="card-header; text-center">
+    <h2 style="color:tomato">BOYUTLAR LİSTESİ SAYFASI</h2>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ADI</th>
+            <th>FİYAT</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @*Burada boyutların içerisinden foreach ile gezip, yazdıracağız*@
+        @foreach (var boyut in Model)
+        {
+            <tr>
+                <td>@boyut.BoyutAd</td>
+                <td>@boyut.BoyutFiyat</td>
+                <td class="text-end">
+                    <a class="btn btn-warning" asp-area="Admin" asp-controller="Boyut" asp-action="Guncelle" asp-route-id="@boyut.BoyutId">Güncelle</a>
+                    <a class="btn btn-danger" asp-area="Admin" asp-controller="Boyut" asp-action="Sil" asp-route-id="@boyut.BoyutId">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

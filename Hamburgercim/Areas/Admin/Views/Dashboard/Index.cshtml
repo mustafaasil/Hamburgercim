@@ -1,0 +1,61 @@
+﻿
+
+@model List<Hamburgercim.Models.Data.Classes.Siparis>
+
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Hamburger Adi
+                </th>
+                <th>
+                    Hamburger Resimi
+                </th>
+                <th>
+                    İçecek
+                </th>
+                <th>
+                    Ekstra Malzemeler
+                </th>
+                <th>
+                    Boyut
+                </th>
+                <th>
+                    Sipariş Adeti
+                </th>
+                <th>
+                    Toplam Fiyat
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @*Buraya sırasıyla bütün siparişler listenecek*@
+            @foreach (var siparis in Model)
+            {
+                <tr>
+                    <td>@siparis.Hamburger!.HamburgerAd</td>
+                    <td><img src="~/images/@siparis.Hamburger?.HamburgerFoto" height="40px" width="40px" alt="Resim Yok" /></td>
+                    <td>@siparis.Icecek?.IcecekAd</td>
+                    <td>
+                        @{
+                            var ekstraMalzemeler = siparis.EkstraMalzeme;
+                            for (int i = 0; i < ekstraMalzemeler?.Count; i++)
+                            {
+                                @ekstraMalzemeler[i].EkstraMalzemeAd
+                                if (i < ekstraMalzemeler.Count - 1)
+                                {
+                                    @(",")
+                                }
+                            }
+                        }
+                    </td>
+                    <td>@siparis.Boyut.BoyutAd</td>
+                    <td>@siparis.SiparisAdet</td>
+                    <td>@siparis.ToplamTutar</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

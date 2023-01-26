@@ -1,0 +1,31 @@
+﻿
+@model List<Hamburgercim.Models.Data.Classes.Icecek>
+@*Burada iceceklerin listesi olacak. Ayrıca ekleme,silme ve güncelleme ile ilgili buttonlar olacak*@
+
+<div class="card-header; text-center">
+    <h2 style="color:tomato">ICECEKLER LİSTESİ SAYFASI</h2>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ADI</th>
+            <th>FİYAT</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @*Burada iceceklerin içerisinden foreach ile gezip, yazdıracağız*@
+        @foreach (var icecek in Model)
+        {
+            <tr>
+                <td>@icecek.IcecekAd</td>
+                <td>@icecek.IcecekFiyat</td>
+                <td class="text-end">
+                    <a class="btn btn-warning" asp-area="Admin" asp-controller="Icecek" asp-action="Guncelle" asp-route-id="@icecek.IcecekId">Güncelle</a>
+                    <a class="btn btn-danger" asp-area="Admin" asp-controller="Icecek" asp-action="Sil" asp-route-id="@icecek.IcecekId">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
